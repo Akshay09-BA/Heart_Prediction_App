@@ -1,7 +1,11 @@
-!pip install scikit-learn
+
 import streamlit as st
 import pickle
 import numpy as np
+
+pip install scikit-learn
+python -c "import sklearn; print(sklearn.__version__)"
+
 
 # Load the trained RandomForest model and scaler
 with open('rheart_model.pkl', 'rb') as model_file:
