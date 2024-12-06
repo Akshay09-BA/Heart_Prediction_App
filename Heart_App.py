@@ -1,13 +1,10 @@
-
 import streamlit as st
 import pandas as pd
 import pickle
-import numpy as np
 
 # Load the trained RandomForest model and scaler
-with open('rheart_model.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
-    
+with open('rheart_model.pkl', 'rb') as file:
+    model = pickle.load(file)
 with open('rsc.pkl', 'rb') as scaler_file:
     scaler = pickle.load(scaler_file)
 
@@ -37,7 +34,7 @@ def user_input_features():
     slope = st.sidebar.selectbox('Slope of the Peak Exercise ST Segment (slope)', (0, 1, 2))
     ca = st.sidebar.number_input('Number of Major Vessels (ca)', min_value=0, max_value=4, value=0)
     thal = st.sidebar.selectbox('Thalassemia (thal)', (0, 1, 2, 3))
-
+    
     data = {
         'age': age,
         'sex': sex,
@@ -53,7 +50,7 @@ def user_input_features():
         'ca': ca,
         'thal': thal
     }
-
+    
     features = pd.DataFrame(data, index=[0])
     return features
 
@@ -73,7 +70,7 @@ if st.button('Predict'):
     input_scaled = scaler.transform(input_df)  # Ensure the input is scaled as per training
     prediction = model.predict(input_scaled)
     prediction_proba = model.predict_proba(input_scaled)
-
+    
     if prediction[0] == 1:
         st.write('<h3 style="color: red;">Heart Disease</h3>', unsafe_allow_html=True)
         st.image("https://previews.123rf.com/images/gloly67/gloly671807/gloly67180700005/104596443-cartoon-character-sadness-heart-with-nameplate-help-unhealthy-heart-concept-icon-design-vector.jpg", caption='You are at Risk', use_column_width = True)
