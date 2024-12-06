@@ -1,3 +1,5 @@
+source /home/adminuser/venv/bin/activate
+
 import streamlit as st
 import pandas as pd
 import pickle
