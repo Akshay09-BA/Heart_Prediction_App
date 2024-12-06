@@ -1,6 +1,6 @@
 source /home/adminuser/venv/bin/activate
 
-pip install scikit-learn
+!pip !install scikit-learn
 
 
 import streamlit as st
