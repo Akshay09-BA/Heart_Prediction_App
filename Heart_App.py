@@ -1,8 +1,3 @@
-source /home/adminuser/venv/bin/activate
-
-!pip !install scikit-learn
-
-
 import streamlit as st
 import pandas as pd
 import pickle
